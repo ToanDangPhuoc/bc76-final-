@@ -13,6 +13,7 @@ import ChiTietKhoaHoc from "./pages/ChiTietKhoaHoc/ChiTietKhoaHoc";
 import CapnhatThongTin from "./pages/CapNhatThongTin/CapnhatThongTin";
 import ThongTinCaNhan from "./pages/CapNhatThongTin/ThongTinCaNhan";
 import QuanLyKhoaHoc from "./pages/CapNhatThongTin/QuanLyKhoaHoc";
+import LogIn from "./pages/LogIn/Login";
 export const NotificationContext = createContext();
 
 const Homtemplate = React.lazy(() =>
@@ -71,7 +72,7 @@ const arrRoutes = [
   {
     index: true,
     path: pathDefault.logIn,
-    element: <Login />,
+    element: <LogIn />,
   },
 
   {

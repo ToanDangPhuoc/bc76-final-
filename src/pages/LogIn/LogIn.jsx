@@ -13,7 +13,7 @@ import { Button, Input } from "antd";
 import { ButtonDangKy } from "../../components/Button/ButtonCustom";
 import { pathDefault } from "../../common/path";
 
-const Login = () => {
+const LogIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleNotification = useContext(NotificationContext);
@@ -176,4 +176,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LogIn;
