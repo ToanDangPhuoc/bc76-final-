@@ -5,7 +5,6 @@ import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import React, { Suspense, CreateContext, createContext } from "react";
 import SignIn from "./pages/SignIn/SignIn";
-import Login from "./pages/LogIn/Login";
 import HomePage from "./pages/HomePage";
 import DanhSachKhoaHoc from "./pages/DanhSachKhoaHoc/DanhSachKhoaHoc";
 import ToanBoDanhSachKhoaHoc from "./pages/DanhSachKhoaHoc/ToanBoDanhSachKhoaHoc";
