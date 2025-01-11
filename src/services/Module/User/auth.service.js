@@ -12,12 +12,12 @@ export const authService = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      GetInfo: (token) => {
-        return http.post("/QuanLyNguoiDung/ThongTinTaiKhoan", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+    });
+  },
+  GetInfo: (token) => {
+    return http.post("/QuanLyNguoiDung/ThongTinTaiKhoan", {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
   },

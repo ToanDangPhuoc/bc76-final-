@@ -22,12 +22,14 @@ export const ButtonHover = ({ icon, content, onClick, type = "button" }) => {
     </button>
   );
 };
-export const ButtonDangKy = ({ icon, content, type = "Button" }) => {
+export const ButtonDangKy = ({
+  icon,
+  content,
+  type = "Button",
+  className = "py-2 px-5 font-medium  bg-yellow-500 hover:bg-yellow-600 text-white   duration-200 rounded-lg",
+}) => {
   return (
-    <button
-      type={type}
-      className="py-2 px-5 font-medium  bg-yellow-500 hover:bg-yellow-600 text-white   duration-200 rounded-lg"
-    >
+    <button type={type} className={className}>
       {icon && <span className="mr-2">{icon}</span>}
       {content}
     </button>

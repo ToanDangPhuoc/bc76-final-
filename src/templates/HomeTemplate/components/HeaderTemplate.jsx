@@ -65,7 +65,7 @@ const HeaderTemplate = () => {
     {
       label: (
         <Button>
-          <Link>Cập nhật và tra cứu khóa học</Link>
+          <Link to={"/update"}>Cập nhật và tra cứu khóa học</Link>
         </Button>
       ),
       key: "0",

@@ -52,6 +52,7 @@ const arrRoutes = [
         element: <CapnhatThongTin />,
         children: [
           {
+            idex: true,
             path: "Info",
             element: <ThongTinCaNhan />,
           },
