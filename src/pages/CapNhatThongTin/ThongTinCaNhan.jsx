@@ -15,7 +15,7 @@ const ThongTinCaNhan = () => {
   console.log(token);
   const layThongTinNguoiDung = (token) => {
     authService
-      .Update(token)
+      .GetInfo(token)
       .then((res) => {
         setInfo(res.data);
       })
@@ -83,12 +83,12 @@ const ThongTinCaNhan = () => {
                 Cập nhật
               </Button>
               <Modal
+                footer={null}
                 title="Cập nhật thông tin"
                 open={isModalOpen}
-                onOk={handleOk}
                 onCancel={handleCancel}
               >
-                <FormCapNhatThongTin />
+                <FormCapNhatThongTin onCancle={handleCancel} />
               </Modal>
             </>
           </div>
