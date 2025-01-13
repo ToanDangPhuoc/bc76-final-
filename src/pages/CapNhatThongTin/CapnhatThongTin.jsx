@@ -8,19 +8,13 @@ const items = [
     key: 1,
     label: (
       <NavLink
-        className={({ isActive, isPending }) => {
-          return `px-3 rounded-md inline-block ${
-            isActive ||
-            location.pathname == "/update" ||
-            location.pathname == "/update/"
-              ? "item-active"
-              : ""
-          }`;
-        }}
+        className={({ isActive }) =>
+          `px-3 rounded-md inline-block ${isActive ? "item-active" : ""}`
+        }
         to={pathDefault.Info}
       >
         <UserOutlined />
-        <span>Thông tin cá nhân</span>
+        <span className=" lg:inline-block hidden ">Thông tin cá nhân</span>
       </NavLink>
     ),
   },
@@ -28,15 +22,13 @@ const items = [
     key: 2,
     label: (
       <NavLink
-        className={({ isActive, isPending }) => {
-          return `px-3 rounded-md inline-block ${
-            isActive ? "item-active" : ""
-          }`;
-        }}
+        className={({ isActive }) =>
+          `px-3 rounded-md inline-block ${isActive ? "item-active" : ""}`
+        }
         to={pathDefault.ManagerCourse}
       >
         <VideoCameraOutlined />
-        <span>Khóa học của tôi</span>
+        <span className=" lg:inline-block hidden ">Khóa học của tôi</span>
       </NavLink>
     ),
   },
@@ -58,7 +50,7 @@ const CapnhatThongTin = () => {
           <Menu
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={["2"]}
+            defaultSelectedKeys={["1"]}
             items={items}
             style={{
               flex: 1,

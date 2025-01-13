@@ -9,4 +9,6 @@ export const pathDefault = {
   Info: "/update/info",
   ManagerCourse: "/update/manager-course",
   admin: "/admin",
+  quanLyKhoaHoc: "/admin/manager-course",
+  quanlyNguoiDung: "/admin/manager-user",
 };

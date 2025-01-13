@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { NotificationContext } from "../../App";
 import { authService } from "../../services/Module/User/auth.service";
 import { Button, Input, Modal } from "antd";
-import { ButtonDangKy } from "../../components/Button/ButtonCustom";
 import FormCapNhatThongTin from "./FormCapNhatThongTin/FormCapNhatThongTin";
 
 const ThongTinCaNhan = () => {
@@ -49,7 +48,9 @@ const ThongTinCaNhan = () => {
   return (
     <div className="container">
       <form action="">
-        <h2 className="font-medium mb-3 text-center">Thông tin cá nhân</h2>
+        <h2 className="font-medium mb-3 text-center  text-xl lg:;text-3xl">
+          Thông tin cá nhân
+        </h2>
         <div className="grid  grid-cols-1 lg:grid-cols-3  space-y-3 ">
           <div className="flex  lg:justify-items-start justify-items-center ">
             <p>

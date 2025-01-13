@@ -1,4 +1,4 @@
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import { pathDefault } from "./common/path";
 import "./index.css";
 import { Bounce, ToastContainer, toast } from "react-toastify";
@@ -13,6 +13,7 @@ import CapnhatThongTin from "./pages/CapNhatThongTin/CapnhatThongTin";
 import ThongTinCaNhan from "./pages/CapNhatThongTin/ThongTinCaNhan";
 import QuanLyKhoaHoc from "./pages/CapNhatThongTin/QuanLyKhoaHoc";
 import LogIn from "./pages/LogIn/LogIn";
+import QuanLyNguoiDung from "./templates/AdminTemplate/components/QuanLyNguoiDung";
 export const NotificationContext = createContext();
 
 const Homtemplate = React.lazy(() =>
@@ -52,7 +53,10 @@ const arrRoutes = [
         element: <CapnhatThongTin />,
         children: [
           {
-            idex: true,
+            index: true,
+            element: <Navigate to={pathDefault.Info} replace />,
+          },
+          {
             path: "Info",
             element: <ThongTinCaNhan />,
           },
@@ -82,6 +86,20 @@ const arrRoutes = [
         <AdminTemplate />
       </Suspense>
     ),
+    children: [
+      {
+        index: true,
+        element: <Navigate to={pathDefault.quanlyNguoiDung} replace />,
+      },
+      {
+        path: "manager-cousre",
+        element: <QuanLyKhoaHoc />,
+      },
+      {
+        path: "manager-user",
+        element: <QuanLyNguoiDung />,
+      },
+    ],
   },
 ];
 function App() {
