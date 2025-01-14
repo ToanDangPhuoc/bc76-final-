@@ -14,6 +14,7 @@ import ThongTinCaNhan from "./pages/CapNhatThongTin/ThongTinCaNhan";
 import QuanLyKhoaHoc from "./pages/CapNhatThongTin/QuanLyKhoaHoc";
 import LogIn from "./pages/LogIn/LogIn";
 import QuanLyNguoiDung from "./templates/AdminTemplate/components/QuanLyNguoiDung";
+import QuanLyKhoaHocAdmin from "./templates/AdminTemplate/components/QuanLyKhoaHocAdmin";
 export const NotificationContext = createContext();
 
 const Homtemplate = React.lazy(() =>
@@ -92,8 +93,8 @@ const arrRoutes = [
         element: <Navigate to={pathDefault.quanlyNguoiDung} replace />,
       },
       {
-        path: "manager-cousre",
-        element: <QuanLyKhoaHoc />,
+        path: "manager-course",
+        element: <QuanLyKhoaHocAdmin />,
       },
       {
         path: "manager-user",

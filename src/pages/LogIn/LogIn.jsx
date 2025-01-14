@@ -99,10 +99,7 @@ const LogIn = () => {
                   onChange={handleChange}
                 />
                 {errors.taiKhoan && touched.taiKhoan && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {" "}
-                    {errors.taiKhoan}
-                  </p>
+                  <p className="text-red-500 text-sm mt-1">{errors.taiKhoan}</p>
                 )}
               </div>
               <div>
