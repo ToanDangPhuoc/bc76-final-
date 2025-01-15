@@ -12,7 +12,7 @@ export const managerUser = {
     });
   },
   capNhatNguoiDung: (token, data) => {
-    return http.put("/QuanLyNguoiDung/CapNhatThongTinNguoiDung", data, {
+    return http.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

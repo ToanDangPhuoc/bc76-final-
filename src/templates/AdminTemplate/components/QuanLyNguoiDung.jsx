@@ -5,6 +5,7 @@ import { NotificationContext } from "../../../App";
 import FromThemNguoiDung from "./FromThemNguoiDung";
 import FormCapNhatNguoiDung from "./FormCapNhatNguoiDung";
 import InputSearch from "../../../components/Input/InputSearch";
+import GhiDanhKhoaHoc from "./GhiDanhKhoaHoc";
 
 const QuanLyNguoiDung = () => {
   // lấy thông tin người dug
@@ -71,7 +72,16 @@ const QuanLyNguoiDung = () => {
       key: "6",
       render: (text, record, index) => (
         <div className="space-x-2">
-          <Button className="bg-green-500 text-white">Ghi danh</Button>
+          <Button
+            onClick={() => {
+              setIsModalOpen(true);
+              setModalType("learn");
+              setEditUser(record);
+            }}
+            className="bg-green-500 text-white"
+          >
+            Ghi danh
+          </Button>
           <Popconfirm
             title="Xóa người dùng ?"
             description="Bạn có muốn xóa người dùng không ?"
@@ -148,6 +158,12 @@ const QuanLyNguoiDung = () => {
           />
         ) : modalType === "edit" ? (
           <FormCapNhatNguoiDung
+            layDanhSachNguoiDung={layDanhSachNguoiDung}
+            editUser={editUser}
+            setIsModalOpen={setIsModalOpen}
+          />
+        ) : modalType === "learn" ? (
+          <GhiDanhKhoaHoc
             layDanhSachNguoiDung={layDanhSachNguoiDung}
             editUser={editUser}
           />

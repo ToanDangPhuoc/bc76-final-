@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { managerUser } from "../../../services/Module/Manager/user.service";
 import { Input, Select } from "antd";
 import { ButtonDangKy } from "../../../components/Button/ButtonCustom";
-const FromThemNguoiDung = ({ layDanhSachNguoiDung, setModalOpen }) => {
+const FromThemNguoiDung = ({ layDanhSachNguoiDung, setIsModalOpen }) => {
   // thonng tin token user
   const userData = JSON.parse(localStorage.getItem("userInfo"));
   const token = userData.accessToken;
@@ -27,7 +27,7 @@ const FromThemNguoiDung = ({ layDanhSachNguoiDung, setModalOpen }) => {
       matKhau: "",
       hoTen: "",
       soDT: "",
-      maLoaiNguoiDung: "HV",
+      maLoaiNguoiDung: "",
       maNhom: "GP01",
       email: "",
     },
@@ -47,10 +47,12 @@ const FromThemNguoiDung = ({ layDanhSachNguoiDung, setModalOpen }) => {
           console.log(data);
           console.log(token);
           handleNotification("success", "Thêm người dùng thành công", 3000);
-          setModalOpen(false);
+          setIsModalOpen(false);
+          layDanhSachNguoiDung();
         })
         .catch((err) => {
           console.log(err);
+          handleNotification("error", err.response.data);
         });
     },
     // validation
