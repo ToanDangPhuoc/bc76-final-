@@ -2,25 +2,20 @@ import { Input } from "antd";
 import React from "react";
 
 const InputSearch = ({
-  placeholder,
   value,
+  placeholder,
+  onKeyDown,
   handleChange,
   handleClick,
-  handleFocus,
-  handleBlur,
-  onTouchStart,
-  onTouchEnd,
 }) => {
   return (
     <Input.Search
-      placeholder={placeholder}
+      value={value}
       onClick={handleClick}
       onChange={handleChange}
-      value={value}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
+      className="input_search"
+      placeholder={placeholder}
+      onKeyDown={onKeyDown}
     />
   );
 };

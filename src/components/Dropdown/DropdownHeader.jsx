@@ -31,7 +31,7 @@ const DropdownHeader = ({ onCategorySelcet }) => {
       }}
     >
       <a onClick={(e) => e.preventDefault()}>
-        <Space className="text-white hover:text-yellow-500">
+        <Space className="text-white hover:text-yellow-500 text-xs lg:text-sm">
           <AlignCenterOutlined className="text-white" />
           Danh sách khóa học
         </Space>

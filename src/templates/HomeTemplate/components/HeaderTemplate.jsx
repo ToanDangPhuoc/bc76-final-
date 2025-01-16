@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import useViewport from "./../../../hooks/UseViewport";
 import { pathDefault } from "../../../common/path";
 import { Link, Navigate, useNavigate } from "react-router-dom";
@@ -27,6 +27,7 @@ const HeaderTemplate = () => {
   const [debouncekeyWord] = useDebounce(keyword, 500);
   // state quản lý dữ liệu thanh search
   const [litSearch, setListSearch] = useState([]);
+  const [errApi, setErrApi] = useState("");
   // gọi APi theo Debounce
   useEffect(() => {
     if (debouncekeyWord) {
@@ -34,16 +35,59 @@ const HeaderTemplate = () => {
         .layKhoaHocTheoTen(debouncekeyWord)
         .then((res) => {
           console.log(res);
-          setListSearch(res.data.slice(0, 4));
+          setListSearch(res.data);
         })
         .catch((err) => {
           console.log(err);
+          setErrApi(err.response.data);
           setListSearch([]);
         });
     } else {
       setListSearch([]);
+      setErrApi("");
     }
   }, [debouncekeyWord]);
+
+  const itemListSearch = useMemo(() => {
+    if (!litSearch || litSearch.length === 0) {
+      return [
+        {
+          key: "no-data",
+          label: <p className="text-red-500">{errApi}</p>,
+        },
+      ];
+    }
+    return litSearch.slice(0, 4).map((item, index) => {
+      return {
+        key: item.maKhoaHoc,
+        label: (
+          <Link
+            to={"/all-course/:id"}
+            className="flex gap-3 place-items-center"
+          >
+            <img
+              className="h-20 w-20"
+              src={item.hinhAnh}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src =
+                  "https://thumbs.dreamstime.com/b/error-page-not-found-lost-sorry-network-erro-concept-vector-illustration-design-193782462.jpg";
+              }}
+              alt=""
+            />
+            <div className=" flex-grow space-y-2">
+              <h3 className=" text-sm lg:text-base font-medium">
+                {item.tenKhoaHoc}
+              </h3>
+              <p className="text-right  text-xs lg:text-sm">
+                Lượt xem {item.luotXem}
+              </p>
+            </div>
+          </Link>
+        ),
+      };
+    });
+  }, [litSearch]);
 
   const navigate = useNavigate();
   // handle change keyword
@@ -86,6 +130,15 @@ const HeaderTemplate = () => {
     setShowDropdown(false);
   };
 
+  const handleClickInputSearch = () => {
+    setOpen(true);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && keyword.trim()) {
+      navigate(`/search-results?keyword=${encodeURIComponent(keyword)}`);
+    }
+  };
   return (
     <header className="py-4 px-4 border-b-gray-200 bg-gray-800  ">
       <div className="container">
@@ -107,7 +160,8 @@ const HeaderTemplate = () => {
           <div className="grid lg:grid-cols-3 grid-cols-2 items-center gap-6">
             <div className="w-full hidden col-span-1 lg:col-span-2 lg:block">
               {/* inputSearch */}
-              <InputSearch
+
+              {/* <InputSearch
                 handleChange={handleChangeKeyword}
                 value={keyword}
                 placeholder={"Tìm khóa học"}
@@ -116,7 +170,6 @@ const HeaderTemplate = () => {
                 }}
                 handleBlur={() => {
                   setTimeout(() => setShowDropdown(false));
-                  setTimeout();
                 }}
                 onTouchStart={() => {
                   setShowDropdown(true);
@@ -133,10 +186,28 @@ const HeaderTemplate = () => {
                 results={litSearch}
                 handleClick={handleClick}
                 showResults={showDropdown}
-              />
+              /> */}
+              <Dropdown
+                menu={{
+                  items: itemListSearch,
+                  onMouseLeave: () => {
+                    setOpen(false);
+                  },
+                }}
+                open={open}
+                trigger={["click"]}
+              >
+                <InputSearch
+                  onKeyDown={handleKeyDown}
+                  handleClick={handleClickInputSearch}
+                  value={keyword}
+                  handleChange={handleChangeKeyword}
+                  placeholder={"Tìm khóa học"}
+                />
+              </Dropdown>
               <div />
             </div>
-            <div className="lg:col-span-1 col-span-2 grid grid-cols-2">
+            <div className="lg:col-span-1 col-span-2 grid grid-cols-1 lg:grid-cols-2 ">
               {user ? (
                 <div className="text-white ">
                   <Dropdown
@@ -146,7 +217,7 @@ const HeaderTemplate = () => {
                     trigger={["click"]}
                   >
                     <a onClick={(e) => e.preventDefault()}>
-                      <Space>
+                      <Space className=" text-xs lg:text-sm ">
                         xin chào,
                         <span className="font-semibold"> {user.hoTen}</span>
                         <DownOutlined />
