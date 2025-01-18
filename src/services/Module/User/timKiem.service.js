@@ -20,4 +20,15 @@ export const timKiemKhoaHoc = {
     console.log("ID Khoa Hoc:", data);
     return http.get(`/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${data}`);
   },
+  QuanLyKhoaHoc: (data, token) => {
+    return http.post(
+      `/QuanLyNguoiDung/LayDanhSachKhoaHocDaXetDuyet`,
+      { taKhoan: data },
+      {
+        headers: {
+          Authorization: `Bearer ${token} `,
+        },
+      }
+    );
+  },
 };
