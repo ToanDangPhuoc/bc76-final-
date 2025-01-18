@@ -44,10 +44,16 @@ const SignIn = () => {
             localStorage.setItem("userInfo", JSON.stringify(res.data));
 
             // dispath để lưu vào state
-            dispatch(handleUpdateUser(userData));
-            setTimeout(() => {
-              navigate(pathDefault.homePage);
-            }, 1500);
+            if (res.data.maLoaiNguoiDung === "GV") {
+              setTimeout(() => {
+                navigate(pathDefault.admin);
+              }, 1500);
+            } else {
+              // Điều hướng đến trang chủ
+              setTimeout(() => {
+                navigate(pathDefault.homePage);
+              }, 1500);
+            }
           })
           .catch((err) => {
             console.error("Chi tiết lỗi:", err);

@@ -15,6 +15,7 @@ import QuanLyKhoaHoc from "./pages/CapNhatThongTin/QuanLyKhoaHoc";
 import LogIn from "./pages/LogIn/LogIn";
 import QuanLyNguoiDung from "./templates/AdminTemplate/components/QuanLyNguoiDung";
 import QuanLyKhoaHocAdmin from "./templates/AdminTemplate/components/QuanLyKhoaHocAdmin";
+import { useSelector } from "react-redux";
 export const NotificationContext = createContext();
 
 const Homtemplate = React.lazy(() =>
@@ -23,7 +24,8 @@ const Homtemplate = React.lazy(() =>
 const AdminTemplate = React.lazy(() =>
   import("./templates/AdminTemplate/AdminTemplate")
 );
-
+const data = JSON.parse(localStorage.getItem("userInfo"));
+const user = data.maLoaiNguoiDung;
 const arrRoutes = [
   {
     path: pathDefault.homePage,
@@ -84,7 +86,11 @@ const arrRoutes = [
     path: pathDefault.admin,
     element: (
       <Suspense fallback={<div>admin</div>}>
-        <AdminTemplate />
+        {user.maLoaiNguoiDung == "GV" ? (
+          <AdminTemplate />
+        ) : (
+          <Navigate to={pathDefault.homePage} />
+        )}
       </Suspense>
     ),
     children: [
