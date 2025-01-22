@@ -86,7 +86,7 @@ const arrRoutes = [
     path: pathDefault.admin,
     element: (
       <Suspense fallback={<div>admin</div>}>
-        {user.maLoaiNguoiDung == "GV" ? (
+        {user === "GV" ? (
           <AdminTemplate />
         ) : (
           <Navigate to={pathDefault.homePage} />
