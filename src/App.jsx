@@ -12,10 +12,9 @@ import ChiTietKhoaHoc from "./pages/ChiTietKhoaHoc/ChiTietKhoaHoc";
 import CapnhatThongTin from "./pages/CapNhatThongTin/CapnhatThongTin";
 import ThongTinCaNhan from "./pages/CapNhatThongTin/ThongTinCaNhan";
 import QuanLyKhoaHoc from "./pages/CapNhatThongTin/QuanLyKhoaHoc";
-import LogIn from "./pages/LogIn/LogIn";
 import QuanLyNguoiDung from "./templates/AdminTemplate/components/QuanLyNguoiDung";
 import QuanLyKhoaHocAdmin from "./templates/AdminTemplate/components/QuanLyKhoaHocAdmin";
-import { useSelector } from "react-redux";
+import LogIn from "./pages/LogIn/LogIn";
 export const NotificationContext = createContext();
 
 const Homtemplate = React.lazy(() =>
