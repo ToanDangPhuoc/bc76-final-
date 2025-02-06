@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { timKiemKhoaHoc } from "../../services/Module/User/timKiem.service";
 import { ButtonDangKy } from "../../components/Button/ButtonCustom";
+import { NotificationContext } from "../../App";
 
 const ChiTietKhoaHoc = () => {
+  //thông báo hành động
+
   const { id } = useParams();
   console.log("ID từ useParams:", id);
   const [data, setData] = useState([]);
@@ -13,11 +16,24 @@ const ChiTietKhoaHoc = () => {
       .then((ress) => {
         console.log(ress);
         setData(ress.data);
+        const dataKhoaHoc = data.maKhoaHoc;
       })
       .catch((err) => {
         console.log(err);
       });
   }, [id]);
+  // user Data
+  const userDataClone = JSON.parse(localStorage.getItem("userInfo"));
+  const token = userDataClone.accessToken;
+  const userData = {
+    taiKhoan: userDataClone.taiKhoan,
+    maKhoaHoc: data.maKhoaHoc,
+  };
+  console.log("Thông tin userData:", userData);
+  console.log("thông tin token", token);
+
+  // handle thông báo
+  const handleNotification = useContext(NotificationContext);
   return (
     <div className="container">
       {/* title */}
@@ -50,7 +66,25 @@ const ChiTietKhoaHoc = () => {
             <p className="text-left mt-3">{data.moTa}</p>
             <p className="text-right mr-10">Ngày Tạo : {data.ngayTao}</p>
             <div className="text-center space-x-3">
-              <ButtonDangKy content={"Đăng ký khóa học"} />
+              <ButtonDangKy
+                onClick={() => {
+                  timKiemKhoaHoc
+                    .DangKyKhoaHoc(userData, token)
+                    .then((res) => {
+                      console.log(res);
+                      handleNotification(
+                        "success",
+                        "bạn đã đăng kí khóa học thành công",
+                        3000
+                      );
+                    })
+                    .catch((err) => {
+                      console.log(err);
+                      handleNotification("error", err.response.data);
+                    });
+                }}
+                content={"Đăng ký khóa học"}
+              />
               <a
                 target="_blank"
                 href="https://www.facebook.com/messages/t/231169113737422"

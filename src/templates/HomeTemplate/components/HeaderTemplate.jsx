@@ -141,7 +141,7 @@ const HeaderTemplate = () => {
   };
   return (
     <header className="py-4 px-4 border-b-gray-200 bg-gray-800  ">
-      <div className="container">
+      <div className="container ">
         <div className="header_content flex justify-evenly items-center  ">
           <div className="flex items-center  space-x-3 ">
             {/* logo và danh mục khóa học */}
@@ -159,34 +159,6 @@ const HeaderTemplate = () => {
           </div>
           <div className="grid lg:grid-cols-3 grid-cols-2 items-center gap-6">
             <div className="w-full hidden col-span-1 lg:col-span-2 lg:block">
-              {/* inputSearch */}
-
-              {/* <InputSearch
-                handleChange={handleChangeKeyword}
-                value={keyword}
-                placeholder={"Tìm khóa học"}
-                handleFocus={() => {
-                  setShowDropdown(true);
-                }}
-                handleBlur={() => {
-                  setTimeout(() => setShowDropdown(false));
-                }}
-                onTouchStart={() => {
-                  setShowDropdown(true);
-                }}
-                onTouchEnd={(event) => {
-                  const isTouchInside =
-                    event.target.closest(".dropdown-search");
-                  if (!isTouchInside) {
-                    setShowDropdown(false);
-                  }
-                }}
-              />
-              <DropdownSearch
-                results={litSearch}
-                handleClick={handleClick}
-                showResults={showDropdown}
-              /> */}
               <Dropdown
                 menu={{
                   items: itemListSearch,

@@ -31,4 +31,15 @@ export const timKiemKhoaHoc = {
       }
     );
   },
+  DangKyKhoaHoc: (data, token) => {
+    return http.post(
+      `/QuanLyKhoaHoc/DangKyKhoaHoc`,
+      { maKhoaHoc: data.maKhoaHoc, taiKhoan: data.taiKhoan },
+      {
+        headers: {
+          Authorization: `Bearer ${token} `,
+        },
+      }
+    );
+  },
 };

@@ -33,7 +33,7 @@ const BodyTemplace = () => {
     navigate(`/all-course/${id}`);
   };
   return (
-    <div className="container mb-20">
+    <div className="container mb-20  ">
       <div className="lg:h-screen grid grid-cols-1 lg:grid-cols-2 justify-between items-center  ">
         <div>
           <Lottie options={defaultOption} height={"50%"} width={"100%"} />

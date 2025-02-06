@@ -25,7 +25,7 @@ const AdminTemplate = React.lazy(() =>
   import("./templates/AdminTemplate/AdminTemplate")
 );
 const data = JSON.parse(localStorage.getItem("userInfo"));
-const user = data.maLoaiNguoiDung;
+const user = data?.maLoaiNguoiDung;
 const arrRoutes = [
   {
     path: pathDefault.homePage,
